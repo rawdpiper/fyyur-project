@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 db = SQLAlchemy()
 
@@ -16,7 +17,7 @@ class Venue(db.Model):
     city = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.Integer(120))
+    phone = db.Column(db.Integer)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
     website = db.Column(db.String(120))
@@ -110,13 +111,13 @@ class Artist(db.Model):
     name = db.Column(db.String, nullable=False)
     city = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.Integer(120))
+    phone = db.Column(db.Integer, nullable=True)
     genres = db.Column(db.ARRAY(db.String), nullable=False)
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-    website = db.Column(db.String(120))
-    seeking_venue = db.Column(db.Boolean)
-    seeking_description = db.Column(db.Text)
+    image_link = db.Column(db.String(500), nullable=True)
+    facebook_link = db.Column(db.String(120), nullable=True)
+    website = db.Column(db.String(120), nullable=True)
+    seeking_venue = db.Column(db.Boolean, nullable=True)
+    seeking_description = db.Column(db.Text, nullable=True)
 
     def __init__(self, name, genres, city, state, phone, facebook_link):
         self.name = name
